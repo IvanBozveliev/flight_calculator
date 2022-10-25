@@ -34,7 +34,7 @@
     font-weight: 700;
     font-size: 15px;
     text-align: right;
-    color: green
+    color: green;
 }
 
 .tableDistance {
@@ -56,6 +56,12 @@
     white-space: nowrap;
 }
 
-/* #divHours {
-    border-right: 1px solid gray;
-} */
+#hours {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: right;
+    color: green;
+}

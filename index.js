@@ -34,7 +34,8 @@ function addMarker(location, map) {
     } else {
       document.getElementById("miles").innerHTML =
         "<p id='errorText'>You should select minimum 3000 miles distance</p>";
-      document.getElementById("hours").innerText = "-----";
+      document.getElementById("hours").innerHTML =
+        "<p id='errorText'>-----</p>";
     }
 
     data.push(markers);
@@ -121,7 +122,8 @@ function setFlightPath(markers, map) {
 function hours(distance, flights) {
   let speed = 480;
   let flyHours = (distance / speed) * flights;
-  document.getElementById("hours").innerHTML = Math.round(flyHours) + "hours";
+  document.getElementById("hours").innerHTML =
+    Math.round(flyHours) + "<p id='textMiles'> hours</p>";
 }
 
 window.initMap = initMap;
