@@ -1,0 +1,46 @@
+.titleDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.titleDiv h3 {
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.hr {
+    border-bottom: 2px solid grey;
+    min-width: 400px;
+}
+
+#map {
+    width: 600px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+#miles {
+    font-weight: 700;
+    font-size: 22px;
+    text-align: right;
+    color: green
+}
+
+.tableDistance {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    justify-content: center;
+}
+
+/* #divHours {
+    border-right: 1px solid gray;
+} */

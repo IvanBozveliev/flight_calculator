@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map Calculator</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="titleDiv">
+        <h3>Input Your Missions</h3>
+        <div class="hr"></div>
+      </div>
+      <div class="titleDiv">
+        <h3>Your Route Map</h3>
+        <div class="hr"></div>
+      </div>
+      <div id="map"></div>
+      <div class="titleDiv">
+        <h3>Your Minimum Requirements</h3>
+        <div class="hr"></div>
+      </div>
+      <div class="tableDistance">
+        <div id="divHours">
+          <h5>Your Estimated Annual Flight Hours</h5>
+          <div id="hours"></div>
+        </div>
+        <hr />
+        <div id="divMiles">
+          <h5>Minimum Aircraft Range Requried</h5>
+          <div id="miles"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDa4FSq9AXhpN99kor9ZZEarZATcJChmNU&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
