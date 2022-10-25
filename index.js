@@ -28,11 +28,13 @@ function addMarker(location, map) {
     setFlightPath(markers, map);
 
     if (distance(markers) >= 3000) {
-      const text = distance(markers) + "<p id='textMiles'> nautical miles</p>";
-      document.getElementById("miles").innerHTML = text;
+      document.getElementById("miles").innerHTML =
+        distance(markers) + "<p id='textMiles'> nautical miles</p>";
+      hours(distance(markers), 1);
     } else {
       document.getElementById("miles").innerHTML =
         "<p id='errorText'>You should select minimum 3000 miles distance</p>";
+      document.getElementById("hours").innerText = "-----";
     }
 
     data.push(markers);
@@ -114,6 +116,12 @@ function setFlightPath(markers, map) {
 
     flightPath.setMap(map);
   });
+}
+
+function hours(distance, flights) {
+  let speed = 480;
+  let flyHours = (distance / speed) * flights;
+  document.getElementById("hours").innerHTML = Math.round(flyHours) + "hours";
 }
 
 window.initMap = initMap;
