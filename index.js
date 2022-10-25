@@ -26,8 +26,15 @@ function addMarker(location, map) {
 
   if (markers.length === 2) {
     setFlightPath(markers, map);
-    document.getElementById("miles").innerText =
-      distance(markers) + " nautical miles";
+
+    if (distance(markers) >= 3000) {
+      const text = distance(markers) + "<p id='textMiles'> nautical miles</p>";
+      document.getElementById("miles").innerHTML = text;
+    } else {
+      document.getElementById("miles").innerHTML =
+        "<p id='errorText'>You should select minimum 3000 miles distance</p>";
+    }
+
     data.push(markers);
     markers = [];
   }

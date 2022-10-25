@@ -28,8 +28,11 @@
 }
 
 #miles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 15px;
     text-align: right;
     color: green
 }
@@ -39,6 +42,18 @@
     display: grid;
     grid-template-columns: 200px 200px 200px;
     justify-content: center;
+}
+
+#textMiles {
+    margin-left: 10px;
+    color: black;
+    white-space: nowrap;
+}
+
+#errorText {
+    color: red;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 /* #divHours {
