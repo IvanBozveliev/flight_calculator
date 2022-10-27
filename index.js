@@ -2,16 +2,17 @@ let markers = [];
 let pathPositions = [];
 
 function initMap() {
-  const uluru = { lat: -25.344, lng: 131.031 };
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
+    minZoom: 1,
+    zoom: 1,
+    center: new google.maps.LatLng(0, 0),
     streetViewControl: false,
+    mapTypeControl: false,
+    mapId: "343434ff23",
   });
 
   google.maps.event.addListener(map, "click", (event) => {
     addMarker(event.latLng, map);
-    // geocode({ location: event.latLng }, map);
   });
 }
 
@@ -23,6 +24,7 @@ function addMarker(location, map) {
   marker.setMap(map);
   markers.push(marker);
   pathPositions.push(marker.position);
+  geocode({ location }, map, marker);
 
   if (markers.length === 2) {
     if (distance(markers) > 3000) {
@@ -44,17 +46,16 @@ function addMarker(location, map) {
   }
 }
 
-function geocode(location, map) {
+function geocode(location, map, marker) {
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
 
   geocoder.geocode(location).then((response) => {
     const { results } = response;
-    console.log(results);
-    console.log(results[1].formatted_address);
-
-    infowindow.setContent(results[1].formatted_address);
-    infowindow.open(map);
+    if (results[1]) {
+      infowindow.setContent(results[1].formatted_address);
+      infowindow.open(map, marker);
+    }
   });
 }
 
