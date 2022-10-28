@@ -1,5 +1,7 @@
 let markers = [];
 let pathPositions = [];
+let data = [];
+let arrData = [];
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -25,7 +27,6 @@ function addMarker(location, map) {
   markers.push(marker);
   pathPositions.push(marker.position);
   geocode({ location }, map, marker);
-
   if (markers.length === 2) {
     if (distance(markers) > 3000) {
       setFlightPath(pathPositions, map);
@@ -52,13 +53,41 @@ function geocode(location, map, marker) {
 
   geocoder.geocode(location).then((response) => {
     const { results } = response;
+
     if (results[1]) {
       infowindow.setContent(results[1].formatted_address);
       infowindow.open(map, marker);
+      data.push(results[1].formatted_address.split(",")[0]);
+
+      if (data.length % 2 == 0) {
+        console.log(data);
+        arrData.push(data);
+        visualise(arrData);
+        data = [];
+        arrData = [];
+      }
     }
   });
 }
+function visualise(data) {
+  data.map((arr) => {
+    let origin = document.createElement("p");
+    origin.innerText += `${arr[0]}`;
+    let destination = document.createElement("p");
+    destination.innerText += `${arr[1]}`;
+    let timePerYear = document.createElement("p");
+    timePerYear.setAttribute("class", "ptimes");
+    timePerYear.innerText += 1;
+    let remove = document.createElement("button");
+    remove.className = "remove";
+    remove.textContent = "Remove";
 
+    document.getElementById("origin").appendChild(origin);
+    document.getElementById("destination").appendChild(destination);
+    document.getElementById("timePerYear").appendChild(timePerYear);
+    document.getElementById("removeBtn").appendChild(remove);
+  });
+}
 function setFlightPath(positions, map) {
   let flightPath = new google.maps.Polyline({
     path: positions,
@@ -103,5 +132,18 @@ function hours(distance, flights) {
   document.getElementById("hours").innerHTML =
     Math.round(flyHours) + "<p id='textMiles'> hours</p>";
 }
+
+let uniqid = () => {
+  return Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
+};
+
+document.getElementById("timePerYear").addEventListener("click", (e) => {
+  if (e.target.localName == "p") {
+    document.getElementsByTagName("p").innerHTML = `<input type='text'>${+e
+      .target.innerText++}</input>`;
+  }
+});
 
 window.initMap = initMap;

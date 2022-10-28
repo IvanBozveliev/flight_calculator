@@ -93,16 +93,51 @@
     text-align: center;
 }
 
-.cellResult {
+#origin {
+    display: flex;
+    flex-direction: column;
     border-right: 1px solid gray;
     min-height: 200px;
+    text-align: center;
+
 }
 
-.textInput {
-    border: none;
+#origin {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid gray;
+    min-height: 200px;
+    text-align: center;
+
+}
+
+#destination {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid gray;
+    min-height: 200px;
     text-align: center;
 }
 
-.textInput:focus {
-    border: none;
+#timePerYear {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid gray;
+    min-height: 200px;
+    text-align: center;
+}
+
+#removeBtn {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid gray;
+    min-height: 200px;
+    text-align: center;
+    align-items: center;
+
+}
+
+.remove {
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
