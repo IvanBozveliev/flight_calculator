@@ -31,7 +31,7 @@ function addMarker(location, map) {
     if (distance(markers) > 3000) {
       setFlightPath(pathPositions, map);
       document.getElementById("miles").innerHTML =
-        distance(markers) + "<p id='textMiles'> nautical miles</p>";
+        `<p>${distance(markers)}</p>` + "<p id='textMiles'> nautical miles</p>";
       hours(distance(markers), 1);
     } else {
       markers.map((marker) => marker.setMap(null));
@@ -53,19 +53,19 @@ function geocode(location, map, marker) {
 
   geocoder.geocode(location).then((response) => {
     const { results } = response;
-
     if (results[1]) {
       infowindow.setContent(results[1].formatted_address);
       infowindow.open(map, marker);
-      data.push(results[1].formatted_address.split(",")[0]);
+    }
+    results[1]?.formatted_address != undefined
+      ? data.push(results[1].formatted_address.split(",")[0])
+      : data.push("Unknown");
 
-      if (data.length % 2 == 0) {
-        console.log(data);
-        arrData.push(data);
-        visualise(arrData);
-        data = [];
-        arrData = [];
-      }
+    if (data.length % 2 == 0) {
+      arrData.push(data);
+      visualise(arrData);
+      data = [];
+      arrData = [];
     }
   });
 }
@@ -98,7 +98,6 @@ function setFlightPath(positions, map) {
   });
   flightPath.setMap(map);
 }
-
 function distance(data) {
   if (data.length !== 0) {
     let mk1 = data[0].position;
@@ -125,24 +124,20 @@ function distance(data) {
     return d.toFixed(2);
   }
 }
-
 function hours(distance, flights) {
+  console.log(flights);
+  console.log(distance);
   let speed = 480;
-  let flyHours = (distance / speed) * flights;
+  let flyHours = Math.round(distance / speed) * flights;
   document.getElementById("hours").innerHTML =
-    Math.round(flyHours) + "<p id='textMiles'> hours</p>";
+    flyHours + "<p id='textMiles'> hours</p>";
 }
-
-let uniqid = () => {
-  return Math.floor((1 + Math.random()) * 0x10000)
-    .toString(16)
-    .substring(1);
-};
-
 document.getElementById("timePerYear").addEventListener("click", (e) => {
   if (e.target.localName == "p") {
-    document.getElementsByTagName("p").innerHTML = `<input type='text'>${+e
-      .target.innerText++}</input>`;
+    let flights = (document.getElementsByTagName("p").innerHTML = +e.target
+      .innerText++);
+    let miles = document.getElementById("miles").childNodes[0].innerText;
+    hours(+miles, ++flights);
   }
 });
 

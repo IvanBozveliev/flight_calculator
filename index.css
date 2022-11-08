@@ -21,6 +21,13 @@
     min-width: 400px;
 }
 
+.ptimes {
+    display: flex;
+    justify-items: center;
+    cursor: pointer;
+    width: 10px;
+}
+
 #map {
     width: 512px;
     height: 512px;
@@ -125,6 +132,7 @@
     border-right: 1px solid gray;
     min-height: 200px;
     text-align: center;
+    align-items: center;
 }
 
 #removeBtn {
